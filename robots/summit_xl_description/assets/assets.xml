@@ -1,0 +1,156 @@
+<mujocoinclude>
+
+    <compiler angle="radian" autolimits="true" meshdir = "./meshes"/>
+    <statistic meansize="0.767828" extent="17.3945" center="-1.30273 -0.281443 0.819464" />
+
+    <asset>
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.2 0.3" width="512" height="512"/>
+        <material name="MatGnd" reflectance="0.5" texture="texplane" texrepeat="1 1" texuniform="true"/>
+    </asset>
+    
+    <asset>
+        <mesh name="base" file="base.stl" scale="0.001 0.001 0.001" />
+        <mesh name="r1" file="r1.stl" scale="0.001 0.001 0.001" />
+        <mesh name="r2" file="r2.stl" scale="0.001 0.001 0.001" />
+        <mesh name="l1" file="l1.stl" scale="0.001 0.001 0.001" />
+        <mesh name="l2" file="l2.stl" scale="0.001 0.001 0.001" />
+
+        <mesh name="summit_xls_chassis" file="bases/xls/summit_xls_chassis.stl" />
+        <mesh name="summit_xls_chapas_inox_tapas" file="bases/xls/summit_xls_chapas_inox_tapas.stl" />
+        <mesh name="robotnik_logo_chasis" file="bases/xls/robotnik_logo_chasis.stl" />
+        <mesh name="summit_xls_omni_wheel_1" file="wheels/omni_wheel_1.stl" />
+        <mesh name="summit_xls_omni_wheel_2" file="wheels/omni_wheel_2.stl" />
+        <mesh name="structure_hokuyo" file="structures/structure_hokuyo.stl" />
+
+        <mesh name="ur3_visual_base_material_001" file="ur3/visual/base_material_001.obj" />
+        <mesh name="ur3_visual_base_material_002" file="ur3/visual/base_material_002.obj" />
+        <mesh name="ur3_collision_base" file="ur3/collision/base.stl" />
+        <mesh name="ur3_visual_shoulder_verbindung_001" file="ur3/visual/shoulder_verbindung_001.obj" />
+        <mesh name="ur3_visual_shoulder_blau_001" file="ur3/visual/shoulder_blau_001.obj" />
+        <mesh name="ur3_visual_shoulder_grey_001" file="ur3/visual/shoulder_grey_001.obj" />
+        <mesh name="ur3_visual_shoulder_verbindung_001_2" file="ur3/visual/shoulder_verbindung_001_2.obj" />
+        <mesh name="ur3_visual_shoulder_grey_001_2" file="ur3/visual/shoulder_grey_001_2.obj" />
+        <mesh name="ur3_visual_shoulder_verbindung_001_3" file="ur3/visual/shoulder_verbindung_001_3.obj" />
+        <mesh name="ur3_collision_shoulder" file="ur3/collision/shoulder.stl" />
+        <mesh name="ur3_visual_upperarm_blau" file="ur3/visual/upperarm_blau.obj" />
+        <mesh name="ur3_visual_upperarm_verbindung" file="ur3/visual/upperarm_verbindung.obj" />
+        <mesh name="ur3_visual_upperarm_verbindung_2" file="ur3/visual/upperarm_verbindung_2.obj" />
+        <mesh name="ur3_visual_upperarm_verbindung_3" file="ur3/visual/upperarm_verbindung_3.obj" />
+        <mesh name="ur3_visual_upperarm_verbindung_4" file="ur3/visual/upperarm_verbindung_4.obj" />
+        <mesh name="ur3_visual_upperarm_rohr" file="ur3/visual/upperarm_rohr.obj" />
+        <mesh name="ur3_visual_upperarm_verbindung_5" file="ur3/visual/upperarm_verbindung_5.obj" />
+        <mesh name="ur3_visual_upperarm_verbindung_6" file="ur3/visual/upperarm_verbindung_6.obj" />
+        <mesh name="ur3_visual_upperarm_verbindung_7" file="ur3/visual/upperarm_verbindung_7.obj" />
+        <mesh name="ur3_visual_upperarm_blau_2" file="ur3/visual/upperarm_blau_2.obj" />
+        <mesh name="ur3_visual_upperarm_verbindung_8" file="ur3/visual/upperarm_verbindung_8.obj" />
+        <mesh name="ur3_collision_upperarm" file="ur3/collision/upperarm.stl" />
+        <mesh name="ur3_visual_forearm_verbindung" file="ur3/visual/forearm_verbindung.obj" />
+        <mesh name="ur3_visual_forearm_rohr" file="ur3/visual/forearm_rohr.obj" />
+        <mesh name="ur3_visual_forearm_verbindung_2" file="ur3/visual/forearm_verbindung_2.obj" />
+        <mesh name="ur3_visual_forearm_verbindung_3" file="ur3/visual/forearm_verbindung_3.obj" />
+        <mesh name="ur3_visual_forearm_verbindung_4" file="ur3/visual/forearm_verbindung_4.obj" />
+        <mesh name="ur3_visual_forearm_blau" file="ur3/visual/forearm_blau.obj" />
+        <mesh name="ur3_collision_forearm" file="ur3/collision/forearm.stl" />
+        <mesh name="ur3_visual_wrist1_verbindung" file="ur3/visual/wrist1_verbindung.obj" />
+        <mesh name="ur3_visual_wrist1_verbindung_2" file="ur3/visual/wrist1_verbindung_2.obj" />
+        <mesh name="ur3_visual_wrist1_blau" file="ur3/visual/wrist1_blau.obj" />
+        <mesh name="ur3_collision_wrist1" file="ur3/collision/wrist1.stl" />
+        <mesh name="ur3_visual_wrist2_blau" file="ur3/visual/wrist2_blau.obj" />
+        <mesh name="ur3_visual_wrist2_verbindung" file="ur3/visual/wrist2_verbindung.obj" />
+        <mesh name="ur3_visual_wrist2_verbindung_2" file="ur3/visual/wrist2_verbindung_2.obj" />
+        <mesh name="ur3_collision_wrist2" file="ur3/collision/wrist2.stl" />
+        <mesh name="ur3_visual_wrist3_rohr" file="ur3/visual/wrist3_rohr.obj" />
+        <mesh name="ur3_visual_wrist3_verbindung" file="ur3/visual/wrist3_verbindung.obj" />
+        <mesh name="ur3_collision_wrist3" file="ur3/collision/wrist3.stl" />
+        <mesh name="accessories_d435_material0" file="accessories/d435_material0.obj" />
+        <mesh name="accessories_d435_material0_2" file="accessories/d435_material0_2.obj" />
+        <mesh name="accessories_d435_material0_3" file="accessories/d435_material0_3.obj" />
+        <mesh name="accessories_d435_material0_4" file="accessories/d435_material0_4.obj" />
+        <mesh name="accessories_d435_material0_5" file="accessories/d435_material0_5.obj" />
+        <mesh name="accessories_d435_material0_6" file="accessories/d435_material0_6.obj" />
+        <mesh name="accessories_d435_material0_7" file="accessories/d435_material0_7.obj" />
+        <mesh name="accessories_d435_material0_8" file="accessories/d435_material0_8.obj" />
+        <mesh name="accessories_d435_material0_9" file="accessories/d435_material0_9.obj" />
+        <mesh name="accessories_d435_material0_10" file="accessories/d435_material0_10.obj" />
+        <mesh name="accessories_d435_material0_11" file="accessories/d435_material0_11.obj" />
+        <mesh name="accessories_d435_material0_12" file="accessories/d435_material0_12.obj" />
+        <mesh name="accessories_d435_material0_13" file="accessories/d435_material0_13.obj" />
+        <mesh name="accessories_d435_material0_14" file="accessories/d435_material0_14.obj" />
+        <mesh name="accessories_d435_material0_15" file="accessories/d435_material0_15.obj" />
+        <mesh name="accessories_d435_material0_16" file="accessories/d435_material0_16.obj" />
+        <mesh name="accessories_d435_material0_17" file="accessories/d435_material0_17.obj" />
+        <mesh name="accessories_d435_material0_18" file="accessories/d435_material0_18.obj" />
+
+        <mesh name="sick_tim_sick_tim571" file="sick_tim/sick_tim571.obj" />
+        <!-- <mesh name="UR_Contorl_Box" file="UR_Contorl_Box.stl" scale="0.001 0.001 0.001" /> -->
+        <material name="rh_p12_rn_base_mat" rgba="0.2 0.2 0.2 1" specular="0" />
+        <material name="rh_p12_rn_r1_mat" rgba="0.2 0.2 0.2 1" specular="0" />
+        <material name="rh_p12_rn_r2_mat" rgba="0.2 0.2 0.2 1" specular="0" />
+        <material name="rh_p12_rn_l1_mat" rgba="0.2 0.2 0.2 1" specular="0" />
+        <material name="rh_p12_rn_l2_mat" rgba="0.2 0.2 0.2 1" specular="0" />
+        <material name="base_link_mat" rgba="0.502 0.502 0.502 1" specular="0" />
+        <material name="front_left_wheel_link_mat" rgba="0.2 0.2 0.2 1" specular="0" />
+        <material name="front_right_wheel_link_mat" rgba="0.2 0.2 0.2 1" specular="0" />
+        <material name="rear_left_wheel_link_mat" rgba="0.2 0.2 0.2 1" specular="0" />
+        <material name="rear_right_wheel_link_mat" rgba="0.2 0.2 0.2 1" specular="0" />
+        <material name="top_chassis_link_mat" rgba="0.502 0.502 0.502 1" specular="0" />
+        <material name="user_rail_link_mat" rgba="0.502 0.502 0.502 1" specular="0" />
+        <material name="front_bumper_link_mat" rgba="0.502 0.502 0.502 1" specular="0" />
+        <material name="rear_bumper_link_mat" rgba="0.502 0.502 0.502 1" specular="0" />
+        <material name="top_plate_link_mat" rgba="0.502 0.502 0.502 1" specular="0" />
+        <material name="front_laser_base_link_mat" rgba="0.502 0.502 0.502 1" specular="0" />
+        <!-- <material name="control_box_ur3_link_mat" rgba="0.153 0.153 0.153 1" specular="0" /> -->
+        <material name="ur3_base_link_mat_1" rgba="0.2706 0.2706 0.2706 1" specular="0" />
+        <material name="ur3_base_link_mat_2" rgba="0 0 0 1" specular="0" />
+        <material name="shoulder_link_mat_1" rgba="0.1137 0.1137 0.1137 1" specular="0" />
+        <material name="shoulder_link_mat_2" rgba="0.2 0.2784 0.3294 1" specular="0" />
+        <material name="shoulder_link_mat_3" rgba="0.0392 0.0392 0.0392 1" specular="0" />
+        <material name="shoulder_link_mat_4" rgba="0.1137 0.1137 0.1137 1" specular="0" />
+        <material name="shoulder_link_mat_5" rgba="0.0392 0.0392 0.0392 1" specular="0" />
+        <material name="shoulder_link_mat_6" rgba="0.1137 0.1137 0.1137 1" specular="0" />
+        <material name="upper_arm_link_mat_1" rgba="0.251 0.349 0.4078 1" specular="0" />
+        <material name="upper_arm_link_mat_2" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="upper_arm_link_mat_3" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="upper_arm_link_mat_4" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="upper_arm_link_mat_5" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="upper_arm_link_mat_6" rgba="0.3373 0.3373 0.3373 1" specular="0" />
+        <material name="upper_arm_link_mat_7" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="upper_arm_link_mat_8" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="upper_arm_link_mat_9" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="upper_arm_link_mat_10" rgba="0.251 0.349 0.4078 1" specular="0" />
+        <material name="upper_arm_link_mat_11" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="forearm_link_mat_1" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="forearm_link_mat_2" rgba="0.3373 0.3373 0.3373 1" specular="0" />
+        <material name="forearm_link_mat_3" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="forearm_link_mat_4" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="forearm_link_mat_5" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="forearm_link_mat_6" rgba="0.251 0.349 0.4078 1" specular="0" />
+        <material name="wrist_1_link_mat_1" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="wrist_1_link_mat_2" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="wrist_1_link_mat_3" rgba="0.251 0.349 0.4078 1" specular="0" />
+        <material name="wrist_2_link_mat_1" rgba="0.251 0.349 0.4078 1" specular="0" />
+        <material name="wrist_2_link_mat_2" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="wrist_2_link_mat_3" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="wrist_3_link_mat_1" rgba="0.3373 0.3373 0.3373 1" specular="0" />
+        <material name="wrist_3_link_mat_2" rgba="0.1412 0.1412 0.1412 1" specular="0" />
+        <material name="g_camera_link_mat_1" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_2" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_3" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_4" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_5" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_6" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_7" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_8" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_9" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_10" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_11" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_12" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_13" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_14" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_15" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_16" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_17" rgba="0.749 0.749 0.749 1" specular="0" />
+        <material name="g_camera_link_mat_18" rgba="0.749 0.749 0.749 1" specular="0" />
+    </asset>
+
+</mujocoinclude>

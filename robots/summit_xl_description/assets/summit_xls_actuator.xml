@@ -1,0 +1,22 @@
+<mujocoinclude>
+
+    <actuator>
+
+        <motor name="front_right_wheel_rolling_joint" joint="front_right_wheel_rolling_joint" ctrlrange="-10 10"/>
+        <motor name="front_left_wheel_rolling_joint"  joint="front_left_wheel_rolling_joint"  ctrlrange="-10 10"/>
+        <motor name="back_right_wheel_rolling_joint"  joint="back_right_wheel_rolling_joint"  ctrlrange="-10 10"/>
+        <motor name="back_left_wheel_rolling_joint"   joint="back_left_wheel_rolling_joint"   ctrlrange="-10 10"/>
+
+        <motor name="rh_p12_rn_motor" joint="rh_p12_rn" gear="1" ctrllimited="true" ctrlrange="-1000 1000" />
+        <motor name="rh_r2_motor" joint="rh_r2" gear="1" ctrllimited="true" ctrlrange="-1000 1000" />
+        <motor name="rh_l1_motor" joint="rh_l1" gear="1" ctrllimited="true" ctrlrange="-1000 1000" />
+        <motor name="rh_l2_motor" joint="rh_l2" gear="1" ctrllimited="true" ctrlrange="-1000 1000" />
+        <motor name="shoulder_pan_joint_motor" joint="shoulder_pan_joint" gear="1" ctrllimited="true" ctrlrange="-330 330" />
+        <motor name="shoulder_lift_joint_motor" joint="shoulder_lift_joint" gear="1" ctrllimited="true" ctrlrange="-330 330" />
+        <motor name="elbow_joint_motor" joint="elbow_joint" gear="1" ctrllimited="true" ctrlrange="-150 150" />
+        <motor name="wrist_1_joint_motor" joint="wrist_1_joint" gear="1" ctrllimited="true" ctrlrange="-54 54" />
+        <motor name="wrist_2_joint_motor" joint="wrist_2_joint" gear="1" ctrllimited="true" ctrlrange="-54 54" />
+        <motor name="wrist_3_joint_motor" joint="wrist_3_joint" gear="1" ctrllimited="true" ctrlrange="-54 54" />
+    </actuator>
+
+</mujocoinclude>
