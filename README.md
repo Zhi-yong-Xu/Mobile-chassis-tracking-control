@@ -1,5 +1,7 @@
 # Mobile-chassis-tracking-control
 
+> **说明**：矩阵换行不生效通常是 Markdown 渲染器差异所致。GitHub / KaTeX 支持 `\begin{bmatrix}...\end{bmatrix}` 内的 `\\` 换行，但要求 **公式块 `$$ ... $$` 前后必须有空行**，且 `\\` 后建议跟一个换行符。下面所有矩阵均按此规范书写。
+
 ---
 
 ## 目录
@@ -53,19 +55,33 @@ MATLAB：`NonholonomicMobileRobotPIDControl.m`。
 
 世界系位置 $p=[x,y]^T$，航向角 $\phi$，车体系速度 $\nu=[v_x^b,v_y^b,\omega]^T$。
 
-车体系到世界系的旋转矩阵 $R(\phi)$ 与反对称矩阵 $[\omega]_\times$：
+车体系到世界系的旋转矩阵 $R(\phi)$：
 
 $$
-R(\phi)=\begin{bmatrix}\cos\phi & -\sin\phi \\ \sin\phi & \cos\phi\end{bmatrix},
-\qquad
-[\omega]_\times=\begin{bmatrix}0 & -\omega \\ \omega & 0\end{bmatrix}
+R(\phi)=
+\begin{bmatrix}
+\cos\phi & -\sin\phi \\
+\sin\phi & \cos\phi
+\end{bmatrix}
+$$
+
+反对称矩阵 $[\omega]_\times$：
+
+$$
+[\omega]_\times=
+\begin{bmatrix}
+0 & -\omega \\
+\omega & 0
+\end{bmatrix}
 $$
 
 旋转矩阵及其转置对时间的导数：
 
 $$
-\dot R=R\,[\omega]_\times,
-\qquad
+\dot R=R\,[\omega]_\times
+$$
+
+$$
 \frac{d}{dt}R^T=-[\omega]_\times R^T
 $$
 
@@ -261,17 +277,19 @@ $$
 等效惯量矩阵：
 
 $$
-M_{mat}=\mathrm{diag}\!\left(
-m+\frac{2 I_w}{r^2},\;
-m+\frac{2 I_w}{r^2},\;
-I_{zz}+\frac{2 I_w(a^2+b^2)}{r^2}
-\right)
+M_{mat}=
+\begin{bmatrix}
+m+\dfrac{2 I_w}{r^2} & 0 & 0 \\
+0 & m+\dfrac{2 I_w}{r^2} & 0 \\
+0 & 0 & I_{zz}+\dfrac{2 I_w(a^2+b^2)}{r^2}
+\end{bmatrix}
 $$
 
 科氏力补偿：
 
 $$
-C_{force}=\begin{bmatrix}
+C_{force}=
+\begin{bmatrix}
 -m\,\omega\,v_y^b \\
 m\,\omega\,v_x^b \\
 0
@@ -281,7 +299,13 @@ $$
 从期望加速度到力矩：
 
 $$
-F_{cmd}=M_{mat}\begin{bmatrix}a_x \\ a_y \\ a_\phi\end{bmatrix}+C_{force},
+F_{cmd}=M_{mat}
+\begin{bmatrix}
+a_x \\
+a_y \\
+a_\phi
+\end{bmatrix}
++C_{force},
 \qquad
 \tau_{cmd}=J_{pinv}\,F_{cmd}
 $$
@@ -659,3 +683,67 @@ a_y=(F_p/m)\sin\phi,
 $$
 
 ---
+
+## 5. 总结与横向对照
+
+### 5.1 核心公式速查
+
+车体系误差导数：
+
+$$
+\dot e_x^b=(v_{x,d}^b-v_x^b)+e_y^b\,\omega,
+\qquad
+\dot e_y^b=(v_{y,d}^b-v_y^b)-e_x^b\,\omega
+$$
+
+差速逆解：
+
+$$
+\omega_L=\frac{v-\omega\,d_{car}}{r},
+\qquad
+\omega_R=\frac{v+\omega\,d_{car}}{r}
+$$
+
+差速等效惯量：
+
+$$
+M_{11}=m+\frac{2I_w}{r^2},
+\qquad
+M_{33}=I_{zz}+\frac{2I_w(a^2+b^2)}{r^2}
+$$
+
+麦轮力矩分配矩阵：
+
+$$
+J_{pinv}=\frac{1}{r}
+\begin{bmatrix}
+1 &  1 &  (a+b) \\
+1 & -1 & -(a+b) \\
+1 & -1 &  (a+b) \\
+1 &  1 & -(a+b)
+\end{bmatrix}
+$$
+
+麦轮等效惯量矩阵：
+
+$$
+M_{mat}=
+\begin{bmatrix}
+m+\dfrac{2I_w}{r^2} & 0 & 0 \\
+0 & m+\dfrac{2I_w}{r^2} & 0 \\
+0 & 0 & I_{zz}+\dfrac{2I_w(a^2+b^2)}{r^2}
+\end{bmatrix}
+$$
+
+### 5.2 各文件对照
+
+| 文件 | 底盘 | 误差坐标系 | 航向生成 | 上层方法 | 底层 |
+|---|---|---|---|---|---|
+| `husky_volPID.py` | 差速 | 世界系 | 世界系制导 | PID + 制导 | 逆解 + 本地速度环 |
+| `husky_EW_PID.py` | 差速 | 世界系 | 世界系制导 | PID + 制导（制导向量投影） | 逆解 + 本地速度环 |
+| `husky_EB_PID.py` | 差速 | 车体系 | 车体系制导 | PID + 方位制导 | 逆解 + 本地速度环 |
+| `husky_EB_DSC.py` | 差速 | 车体系 | 滤波面构造 | DSC + 积分/微分 | 逆解 + DSC 前馈 |
+| `Mac_PID.py` | 麦轮 | 世界系+车体系 | 轨迹切线 | 外环位置 PID + 内环速度 PID | $J_{pinv}$ 力矩 |
+| `Mac_DSC.py` | 麦轮 | 车体系 | 轨迹切线 | 纯 DSC | $J_{pinv}$ 力矩 |
+| `Macdscpid.py` | 麦轮 | 车体系 | 轨迹切线 | DSC + 积分/微分 | $J_{pinv}$ 力矩 |
+| MATLAB | 质点车 | 世界系 | 世界系制导 | 外环 PID + 内环姿态 PID | 直接 $(F_p,T_p)$ |
