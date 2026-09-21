@@ -56,8 +56,8 @@ MATLAB：`NonholonomicMobileRobotPIDControl.m`。
 车体系到世界系的旋转矩阵 $R(\phi)$ 与反对称矩阵 $[\omega]_\times$：
 
 $$
-R(\phi)=\begin{bmatrix}\cos\phi & -\sin\phi\\ \sin\phi & \cos\phi\end{bmatrix},\qquad
-[\omega]_\times=\begin{bmatrix}0 & -\omega\\ \omega & 0\end{bmatrix}
+R(\phi)=\begin{bmatrix}\cos\phi & -\sin\phi \\ \sin\phi & \cos\phi\end{bmatrix},\qquad
+[\omega]_\times=\begin{bmatrix}0 & -\omega \\ \omega & 0\end{bmatrix}
 $$
 
 旋转矩阵及其转置对时间的导数：
