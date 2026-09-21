@@ -56,14 +56,16 @@ MATLAB：`NonholonomicMobileRobotPIDControl.m`。
 车体系到世界系的旋转矩阵 $R(\phi)$ 与反对称矩阵 $[\omega]_\times$：
 
 $$
-R(\phi)=\begin{bmatrix}\cos\phi & -\sin\phi \\ \sin\phi & \cos\phi\end{bmatrix},\qquad
+R(\phi)=\begin{bmatrix}\cos\phi & -\sin\phi \\ \sin\phi & \cos\phi\end{bmatrix},
+\qquad
 [\omega]_\times=\begin{bmatrix}0 & -\omega \\ \omega & 0\end{bmatrix}
 $$
 
 旋转矩阵及其转置对时间的导数：
 
 $$
-\dot R=R\,[\omega]_\times,\qquad
+\dot R=R\,[\omega]_\times,
+\qquad
 \frac{d}{dt}R^T=-[\omega]_\times R^T
 $$
 
@@ -72,11 +74,15 @@ $$
 参考位置 $p_d=[x_d,y_d]^T$，世界系误差及其导数：
 
 $$
-e_x=x_d-x,\qquad e_y=y_d-y
+e_x=x_d-x,
+\qquad
+e_y=y_d-y
 $$
 
 $$
-\dot e_x=v_{x,d}-v_x,\qquad \dot e_y=v_{y,d}-v_y
+\dot e_x=v_{x,d}-v_x,
+\qquad
+\dot e_y=v_{y,d}-v_y
 $$
 
 世界系误差导数无旋转耦合项，是 `husky_volPID.py` / `husky_EW_PID.py` / MATLAB 直接使用解析微分 $K_d(\dot p_d-\dot p)$ 的依据。
@@ -84,7 +90,8 @@ $$
 ### 1.3 车体系误差
 
 $$
-e_x^b=e_x\cos\phi+e_y\sin\phi,\qquad
+e_x^b=e_x\cos\phi+e_y\sin\phi,
+\qquad
 e_y^b=-e_x\sin\phi+e_y\cos\phi
 $$
 
@@ -93,12 +100,14 @@ $$
 `husky_EB_PID.py` 实现：
 
 $$
-v_{x,d}^b=v_{x,d}\cos\phi+v_{y,d}\sin\phi,\qquad
+v_{x,d}^b=v_{x,d}\cos\phi+v_{y,d}\sin\phi,
+\qquad
 v_{y,d}^b=-v_{x,d}\sin\phi+v_{y,d}\cos\phi
 $$
 
 $$
-v_x^b=v_{x}\cos\phi+v_{y}\sin\phi,\qquad
+v_x^b=v_{x}\cos\phi+v_{y}\sin\phi,
+\qquad
 v_y^b=-v_{x}\sin\phi+v_{y}\cos\phi
 $$
 
@@ -113,7 +122,8 @@ $$
 `husky_EB_DSC.py` / `Macdscpid.py` 实现：
 
 $$
-v_{x,ff}=v_{x,d}\cos\phi+v_{y,d}\sin\phi,\qquad
+v_{x,ff}=v_{x,d}\cos\phi+v_{y,d}\sin\phi,
+\qquad
 v_{y,ff}=-v_{x,d}\sin\phi+v_{y,d}\cos\phi
 $$
 
@@ -147,7 +157,9 @@ $$
 由此角速度指令一般形式为
 
 $$
-\omega_{cmd}=K_{att}\tilde\phi-K_{d,att}\omega+w_{ff},\qquad w_{ff}=\dot\phi_d
+\omega_{cmd}=K_{att}\tilde\phi-K_{d,att}\omega+w_{ff},
+\qquad
+w_{ff}=\dot\phi_d
 $$
 
 ---
@@ -159,11 +171,15 @@ $$
 半轮距 $d_{car}$、轮半径 $r$。逆解（由车体速度到左右轮角速度）：
 
 $$
-v_L=v-\omega\,d_{car},\qquad v_R=v+\omega\,d_{car}
+v_L=v-\omega\,d_{car},
+\qquad
+v_R=v+\omega\,d_{car}
 $$
 
 $$
-\omega_L=\frac{v_L}{r},\qquad \omega_R=\frac{v_R}{r}
+\omega_L=\frac{v_L}{r},
+\qquad
+\omega_R=\frac{v_R}{r}
 $$
 
 四轮同侧同速分配：`[w_L, w_R, w_L, w_R]`。
@@ -173,7 +189,8 @@ $$
 等效惯量：
 
 $$
-M_{11}=m+\frac{2 I_w}{r^2},\qquad
+M_{11}=m+\frac{2 I_w}{r^2},
+\qquad
 M_{33}=I_{zz}+\frac{2 I_w (a^2+b^2)}{r^2}
 $$
 
@@ -182,15 +199,18 @@ $$
 科氏项与广义力：
 
 $$
-C_x=-m\,\omega\,v_y^b,\qquad
-F_x=M_{11}a_x+C_x,\qquad
+C_x=-m\,\omega\,v_y^b,
+\qquad
+F_x=M_{11}a_x+C_x,
+\qquad
 T_z=M_{33}a_\phi
 $$
 
 共模/差模前馈力矩：
 
 $$
-\tau_{ff,c}=\frac{F_x r}{4},\qquad
+\tau_{ff,c}=\frac{F_x r}{4},
+\qquad
 \tau_{ff,d}=\frac{T_z r}{4 d_{car}}
 $$
 
@@ -229,9 +249,9 @@ $$
 $$
 J_{pinv}=\frac{1}{r}
 \begin{bmatrix}
-1 &  1 &  (a+b)\\
-1 & -1 & -(a+b)\\
-1 & -1 &  (a+b)\\
+1 &  1 &  (a+b) \\
+1 & -1 & -(a+b) \\
+1 & -1 &  (a+b) \\
 1 &  1 & -(a+b)
 \end{bmatrix}
 $$
@@ -252,8 +272,8 @@ $$
 
 $$
 C_{force}=\begin{bmatrix}
--m\,\omega\,v_y^b\\
-m\,\omega\,v_x^b\\
+-m\,\omega\,v_y^b \\
+m\,\omega\,v_x^b \\
 0
 \end{bmatrix}
 $$
@@ -261,7 +281,8 @@ $$
 从期望加速度到力矩：
 
 $$
-F_{cmd}=M_{mat}\begin{bmatrix}a_x\\ a_y\\ a_\phi\end{bmatrix}+C_{force},\qquad
+F_{cmd}=M_{mat}\begin{bmatrix}a_x \\ a_y \\ a_\phi\end{bmatrix}+C_{force},
+\qquad
 \tau_{cmd}=J_{pinv}\,F_{cmd}
 $$
 
@@ -288,7 +309,9 @@ $$
 期望航向：
 
 $$
-\phi_d=\mathrm{atan2}(u_{Gy},u_{Gx}),\qquad \tilde\phi=\mathrm{wrap}(\phi_d-\phi)
+\phi_d=\mathrm{atan2}(u_{Gy},u_{Gx}),
+\qquad
+\tilde\phi=\mathrm{wrap}(\phi_d-\phi)
 $$
 
 前向速度（位置误差投影）：
@@ -304,7 +327,8 @@ $$
 角速度（P + D + 曲率前馈）：
 
 $$
-w_{ff}=v_{cmd}/R,\qquad
+w_{ff}=v_{cmd}/R,
+\qquad
 \omega_{cmd}=\mathrm{clip}(K_{att}\tilde\phi-K_{d,att}\omega+w_{ff},-w_{max},w_{max})
 $$
 
@@ -361,7 +385,9 @@ $$
 **第一动态面（前向/横向通道）带积分/微分**：
 
 $$
-z_{1,x}=-e_x^b,\qquad z_{1,y}=-e_y^b
+z_{1,x}=-e_x^b,
+\qquad
+z_{1,y}=-e_y^b
 $$
 
 $$
@@ -375,7 +401,8 @@ $$
 **一阶低通滤波**：
 
 $$
-\dot\alpha_{f,i}=-(\alpha_{f,i}-\alpha_i)/\tau,\qquad
+\dot\alpha_{f,i}=-(\alpha_{f,i}-\alpha_i)/\tau,
+\qquad
 \alpha_{f,i}\leftarrow\alpha_{f,i}+\dot\alpha_{f,i}\,\Delta t
 $$
 
@@ -388,7 +415,9 @@ $$
 **前向速度调度与曲率前馈**：
 
 $$
-s=\max(\cos\tilde\phi,0),\qquad v_{ref}=\alpha_{f,x}\,s
+s=\max(\cos\tilde\phi,0),
+\qquad
+v_{ref}=\alpha_{f,x}\,s
 $$
 
 $$
@@ -398,7 +427,8 @@ $$
 **航向通道第一面与滤波**：
 
 $$
-z_{1,\phi}=-\tilde\phi,\qquad
+z_{1,\phi}=-\tilde\phi,
+\qquad
 \alpha_\phi=-k_{1,\phi}z_{1,\phi}+\omega_{ff}
 $$
 
@@ -409,7 +439,9 @@ $$
 **第二动态面与加速度指令**：
 
 $$
-z_{2,x}=v_x^b-v_{ref},\qquad z_{2,\phi}=\omega-\alpha_{f,\phi}
+z_{2,x}=v_x^b-v_{ref},
+\qquad
+z_{2,\phi}=\omega-\alpha_{f,\phi}
 $$
 
 $$
@@ -425,7 +457,8 @@ $$
 **底层接口**：
 
 $$
-\omega_{L,cmd}=\frac{v_{ref}-\alpha_{f,\phi}\,d_{car}}{r},\qquad
+\omega_{L,cmd}=\frac{v_{ref}-\alpha_{f,\phi}\,d_{car}}{r},
+\qquad
 \omega_{R,cmd}=\frac{v_{ref}+\alpha_{f,\phi}\,d_{car}}{r}
 $$
 
@@ -438,13 +471,16 @@ $$
 期望航向：
 
 $$
-\phi_d=\omega_{traj}t+\pi/2,\qquad \tilde\phi=\mathrm{wrap}(\phi_d-\phi)
+\phi_d=\omega_{traj}t+\pi/2,
+\qquad
+\tilde\phi=\mathrm{wrap}(\phi_d-\phi)
 $$
 
 外环位置 PID（世界系与车体系）：
 
 $$
-u_{Gx}^{world}=K_p e_x+K_i I_x+K_d D_{ex},\qquad
+u_{Gx}^{world}=K_p e_x+K_i I_x+K_d D_{ex},
+\qquad
 u_{Gx}^{body}=K_p e_x^b+K_i I_x^b+K_d D_{exb}
 $$
 
@@ -489,13 +525,18 @@ $$
 第一动态面：
 
 $$
-z_{1,x}=-e_x^b,\quad z_{1,y}=-e_y^b,\quad z_{1,\phi}=-\tilde\phi
+z_{1,x}=-e_x^b,
+\quad
+z_{1,y}=-e_y^b,
+\quad
+z_{1,\phi}=-\tilde\phi
 $$
 
 虚拟控制律（含参考前馈）：
 
 $$
-\alpha_x=-k_1 z_{1,x}+v_{x,ff},\qquad
+\alpha_x=-k_1 z_{1,x}+v_{x,ff},
+\qquad
 \alpha_y=-k_1 z_{1,y}+v_{y,ff}
 $$
 
@@ -508,7 +549,11 @@ $$
 第二动态面与加速度指令：
 
 $$
-z_{2,x}=v_x^b-\alpha_{f,x},\quad z_{2,y}=v_y^b-\alpha_{f,y},\quad z_{2,\phi}=\omega-\alpha_{f,\phi}
+z_{2,x}=v_x^b-\alpha_{f,x},
+\quad
+z_{2,y}=v_y^b-\alpha_{f,y},
+\quad
+z_{2,\phi}=\omega-\alpha_{f,\phi}
 $$
 
 $$
@@ -578,7 +623,8 @@ $$
 期望航向：
 
 $$
-\phi_d=\mathrm{atan2}(u_{Gy},u_{Gx}),\qquad
+\phi_d=\mathrm{atan2}(u_{Gy},u_{Gx}),
+\qquad
 \tilde\phi=\mathrm{wrap}(\phi_d-\phi)
 $$
 
@@ -605,8 +651,11 @@ $$
 动力学积分：
 
 $$
-a_x=(F_p/m)\cos\phi,\qquad a_y=(F_p/m)\sin\phi,\qquad \alpha=T_p/J
+a_x=(F_p/m)\cos\phi,
+\qquad
+a_y=(F_p/m)\sin\phi,
+\qquad
+\alpha=T_p/J
 $$
 
 ---
-
