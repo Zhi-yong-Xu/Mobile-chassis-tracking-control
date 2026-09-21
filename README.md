@@ -1,8 +1,6 @@
 # Mobile-chassis-tracking-control
 
-> **说明**：矩阵换行不生效通常是 Markdown 渲染器差异所致。GitHub / KaTeX 支持 `\begin{bmatrix}...\end{bmatrix}` 内的 `\\` 换行，但要求 **公式块 `$$ ... $$` 前后必须有空行**，且 `\\` 后建议跟一个换行符。下面所有矩阵均按此规范书写。
 
----
 
 ## 目录
 
