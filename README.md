@@ -17,9 +17,9 @@
 
 本项目包含一组可独立运行的 MuJoCo / MATLAB 仿真脚本，验证两类移动底盘的轨迹跟踪控制：
 
-- **差速/滑移转向底盘**（Husky）：`husky_volPID.py`、`husky_EW_PID.py`、`husky_EB_PID.py`、`husky_EB_DSC.py`；
-- **麦克纳姆轮底盘**（Summit XL）：`Mac_PID.py`、`Mac_DSC.py`、`Macdscpid.py`；
-- **非完整质点车参考实现**：`NonholonomicMobileRobotPIDControl.m`。
+- **差速/滑移转向底盘**（Husky）：`husky_volPID.py`、`husky_EW_PID.py`、`husky_EB_PID.py`、`husky_EB_DSC.py`
+- **麦克纳姆轮底盘**（Summit XL）：`Mac_PID.py`、`Mac_DSC.py`、`Macdscpid.py`
+- **非完整质点车参考实现**：`NonholonomicMobileRobotPIDControl.m`
 
 ### 0.1 依赖与运行
 
@@ -51,9 +51,9 @@ MATLAB：`NonholonomicMobileRobotPIDControl.m`。
 
 ### 1.1 坐标系与旋转
 
-世界系位置 \(p=[x,y]^T\)，航向角 \(\phi\)，车体系速度 \(\nu=[v_x^b,v_y^b,\omega]^T\)。
+世界系位置 $p=[x,y]^T$，航向角 $\phi$，车体系速度 $\nu=[v_x^b,v_y^b,\omega]^T$。
 
-车体系到世界系的旋转矩阵 \(R(\phi)\) 与反对称矩阵 \([\omega]_\times\)：
+车体系到世界系的旋转矩阵 $R(\phi)$ 与反对称矩阵 $[\omega]_\times$：
 
 $$
 R(\phi)=\begin{bmatrix}\cos\phi & -\sin\phi\\ \sin\phi & \cos\phi\end{bmatrix},\qquad
@@ -69,7 +69,7 @@ $$
 
 ### 1.2 世界系误差
 
-参考位置 \(p_d=[x_d,y_d]^T\)，世界系误差及其导数：
+参考位置 $p_d=[x_d,y_d]^T$，世界系误差及其导数：
 
 $$
 e_x=x_d-x,\qquad e_y=y_d-y
@@ -79,7 +79,7 @@ $$
 \dot e_x=v_{x,d}-v_x,\qquad \dot e_y=v_{y,d}-v_y
 $$
 
-世界系误差导数无旋转耦合项，是 `husky_volPID.py` / `husky_EW_PID.py` / MATLAB 直接使用解析微分 \(K_d(\dot p_d-\dot p)\) 的依据。
+世界系误差导数无旋转耦合项，是 `husky_volPID.py` / `husky_EW_PID.py` / MATLAB 直接使用解析微分 $K_d(\dot p_d-\dot p)$ 的依据。
 
 ### 1.3 车体系误差
 
@@ -127,14 +127,14 @@ $$
 
 ### 1.4 航向误差的三种生成方式
 
-角度归一化 \(\mathrm{wrap}(\alpha)=\mathrm{atan2}(\sin\alpha,\cos\alpha)\)。
+角度归一化 $\mathrm{wrap}(\alpha)=\mathrm{atan2}(\sin\alpha,\cos\alpha)$。
 
 | 方式 | 表达式 | 使用文件 |
 |---|---|---|
-| 世界系制导 | \(\phi_d=\mathrm{atan2}(u_{Gy},u_{Gx})\)，\(\tilde\phi=\mathrm{wrap}(\phi_d-\phi)\) | `husky_volPID.py` / `husky_EW_PID.py` / MATLAB |
-| 车体系制导 | \(\tilde\phi=\mathrm{atan2}(u_{by},u_{bx})\) | `husky_EB_PID.py` |
-| 滤波面构造 | \(\tilde\phi=\mathrm{atan2}(\alpha_{f,y},\alpha_{f,x})\) | `husky_EB_DSC.py` |
-| 轨迹切线 | \(\phi_d=\omega_{traj}t+\pi/2\)，\(\tilde\phi=\mathrm{wrap}(\phi_d-\phi)\) | `Mac_PID.py` / `Mac_DSC.py` / `Macdscpid.py` |
+| 世界系制导 | $\phi_d=\mathrm{atan2}(u_{Gy},u_{Gx})$，$\tilde\phi=\mathrm{wrap}(\phi_d-\phi)$ | `husky_volPID.py` / `husky_EW_PID.py` / MATLAB |
+| 车体系制导 | $\tilde\phi=\mathrm{atan2}(u_{by},u_{bx})$ | `husky_EB_PID.py` |
+| 滤波面构造 | $\tilde\phi=\mathrm{atan2}(\alpha_{f,y},\alpha_{f,x})$ | `husky_EB_DSC.py` |
+| 轨迹切线 | $\phi_d=\omega_{traj}t+\pi/2$，$\tilde\phi=\mathrm{wrap}(\phi_d-\phi)$ | `Mac_PID.py` / `Mac_DSC.py` / `Macdscpid.py` |
 
 ### 1.5 航向误差动力学
 
@@ -156,7 +156,7 @@ $$
 
 ### 2.1 运动学
 
-半轮距 \(d_{car}\)、轮半径 \(r\)。逆解（由车体速度到左右轮角速度）：
+半轮距 $d_{car}$、轮半径 $r$。逆解（由车体速度到左右轮角速度）：
 
 $$
 v_L=v-\omega\,d_{car},\qquad v_R=v+\omega\,d_{car}
@@ -177,7 +177,7 @@ M_{11}=m+\frac{2 I_w}{r^2},\qquad
 M_{33}=I_{zz}+\frac{2 I_w (a^2+b^2)}{r^2}
 $$
 
-其中 \(I_w=0.5\,m_w r^2\) 由估计轮质量 \(m_w\) 计算。
+其中 $I_w=0.5\,m_w r^2$ 由估计轮质量 $m_w$ 计算。
 
 科氏项与广义力：
 
@@ -210,7 +210,7 @@ $$
 \tau_R=k_v(\omega_{R,cmd}-\omega_{R,meas})+\tau_{ff,c}+\tau_{ff,d}
 $$
 
-限幅到 \(\pm\tau_{\max}\)。
+限幅到 $\pm\tau_{\max}$。
 
 其它 Husky 脚本（`husky_volPID.py` / `husky_EW_PID.py` / `husky_EB_PID.py`）在力矩模式下仅使用本地速度环：
 
@@ -224,7 +224,7 @@ $$
 
 ### 3.1 运动学
 
-半轴距 \(a\)、半轮距 \(b\)、轮半径 \(r\)。代码中力矩分配矩阵（`J_pinv`）：
+半轴距 $a$、半轮距 $b$、轮半径 $r$。代码中力矩分配矩阵（`J_pinv`）：
 
 $$
 J_{pinv}=\frac{1}{r}
@@ -265,7 +265,7 @@ F_{cmd}=M_{mat}\begin{bmatrix}a_x\\ a_y\\ a_\phi\end{bmatrix}+C_{force},\qquad
 \tau_{cmd}=J_{pinv}\,F_{cmd}
 $$
 
-`Mac_PID.py` / `Macdscpid.py` 中 `tau_cmd = np.clip(tau_cmd, -50, 50)`；`Mac_DSC.py` 同样限幅到 \(\pm 50\)。
+`Mac_PID.py` / `Macdscpid.py` 中 `tau_cmd = np.clip(tau_cmd, -50, 50)`；`Mac_DSC.py` 同样限幅到 $\pm 50$。
 
 ---
 
@@ -318,7 +318,7 @@ $$
 e_{fwd}=u_{Gx}\cos\phi+u_{Gy}\sin\phi
 $$
 
-角速度前馈为 \(w_{ff}=v_{cmd}\,\kappa\)，其中 \(\kappa=0\) 或 \(1/R\)（由 `USE_STRAIGHT_TEST` 决定）。
+角速度前馈为 $w_{ff}=v_{cmd}\,\kappa$，其中 $\kappa=0$ 或 $1/R$（由 `USE_STRAIGHT_TEST` 决定）。
 
 ### 4.3 `husky_EB_PID.py` —— 车体系误差 PID + 方位制导
 
@@ -420,7 +420,7 @@ $$
 a_\phi=-k_2 z_{2,\phi}+\dot\alpha_{f,\phi}-z_{1,\phi}
 $$
 
-**动力学前馈**（§2.2）得到 \(\tau_{ff,c},\tau_{ff,d}\)。
+**动力学前馈**（§2.2）得到 $\tau_{ff,c},\tau_{ff,d}$。
 
 **底层接口**：
 
@@ -429,7 +429,7 @@ $$
 \omega_{R,cmd}=\frac{v_{ref}+\alpha_{f,\phi}\,d_{car}}{r}
 $$
 
-速度伺服直接写 \(\omega_{L/R,cmd}\)；力矩模式按 §2.3 写入。
+速度伺服直接写 $\omega_{L/R,cmd}$；力矩模式按 §2.3 写入。
 
 ### 4.5 `Mac_PID.py` —— 外环位置 PID + 内环速度 PID
 
@@ -441,14 +441,14 @@ $$
 \phi_d=\omega_{traj}t+\pi/2,\qquad \tilde\phi=\mathrm{wrap}(\phi_d-\phi)
 $$
 
-外环位置 PID（世界系与车体系）:
+外环位置 PID（世界系与车体系）：
 
 $$
 u_{Gx}^{world}=K_p e_x+K_i I_x+K_d D_{ex},\qquad
 u_{Gx}^{body}=K_p e_x^b+K_i I_x^b+K_d D_{exb}
 $$
 
-\(y\) 方向同理。
+$y$ 方向同理。
 
 期望车体速度 = 车体系 PID + 参考速度前馈：
 
@@ -480,7 +480,7 @@ $$
 a_\phi=K_{p,v}(v_{\phi,cmd}-\omega)+K_{i,v}I_{v\phi}+K_{d,v}D_{v\phi}
 $$
 
-经 §3.2 麦轮动力学与 \(J_{pinv}\) 分配写入四轮力矩。
+经 §3.2 麦轮动力学与 $J_{pinv}$ 分配写入四轮力矩。
 
 ### 4.6 `Mac_DSC.py` —— 纯 DSC 动态面
 
@@ -523,7 +523,7 @@ $$
 a_\phi=-k_{2,\phi}z_{2,\phi}+\dot\alpha_{f,\phi}-z_{1,\phi}
 $$
 
-经 §3.2 动力学与 \(J_{pinv}\) 分配得到力矩。
+经 §3.2 动力学与 $J_{pinv}$ 分配得到力矩。
 
 ### 4.7 `Macdscpid.py` —— DSC + 积分/微分增强
 
@@ -561,7 +561,7 @@ $$
 
 ### 4.8 `NonholonomicMobileRobotPIDControl.m` —— MATLAB 参考实现
 
-被控对象为非完整质点车，状态向量 \([x,\dot x,y,\dot y,\phi,\dot\phi]^T\)。
+被控对象为非完整质点车，状态向量 $[x,\dot x,y,\dot y,\phi,\dot\phi]^T$。
 
 外环位置 PID：
 
@@ -573,7 +573,7 @@ $$
 u_{Gy}=K_{p,y}e_y+K_{i,y}I_y+K_{d,y}D_{ey}
 $$
 
-微分项由差分实现 \(D_{ex}=(e_x-e_{x,last})/\Delta t\)。
+微分项由差分实现 $D_{ex}=(e_x-e_{x,last})/\Delta t$。
 
 期望航向：
 
@@ -610,66 +610,3 @@ $$
 
 ---
 
-## 5. 总结与横向对照
-
-### 5.1 核心公式速查
-
-$$
-\boxed{
-\begin{aligned}
-&\text{车体系误差导数：}\quad
-\dot e_x^b=(v_{x,d}^b-v_x^b)+e_y^b\omega,\quad
-\dot e_y^b=(v_{y,d}^b-v_y^b)-e_x^b\omega\\
-&\text{差速逆解：}\quad
-\omega_L=\frac{v-\omega d_{car}}{r},\quad
-\omega_R=\frac{v+\omega d_{car}}{r}\\
-&\text{差速等效惯量：}\quad
-M_{11}=m+\frac{2I_w}{r^2},\quad
-M_{33}=I_{zz}+\frac{2I_w(a^2+b^2)}{r^2}\\
-&\text{麦轮力矩分配：}\quad
-J_{pinv}=\frac{1}{r}
-\begin{bmatrix}
-1 &  1 &  (a+b)\\
-1 & -1 & -(a+b)\\
-1 & -1 &  (a+b)\\
-1 &  1 & -(a+b)
-\end{bmatrix}\\
-&\text{麦轮等效惯量：}\quad
-M_{mat}=\mathrm{diag}\!\left(m+\tfrac{2I_w}{r^2},\;m+\tfrac{2I_w}{r^2},\;I_{zz}+\tfrac{2I_w(a^2+b^2)}{r^2}\right)
-\end{aligned}
-}
-$$
-
-### 5.2 各文件对照
-
-| 文件 | 底盘 | 误差坐标系 | 航向生成 | 上层方法 | 底层 |
-|---|---|---|---|---|---|
-| `husky_volPID.py` | 差速 | 世界系 | 世界系制导 | PID + 制导 | 逆解 + 本地速度环 |
-| `husky_EW_PID.py` | 差速 | 世界系 | 世界系制导 | PID + 制导（制导向量投影） | 逆解 + 本地速度环 |
-| `husky_EB_PID.py` | 差速 | 车体系 | 车体系制导 | PID + 方位制导 | 逆解 + 本地速度环 |
-| `husky_EB_DSC.py` | 差速 | 车体系 | 滤波面构造 | DSC + 积分/微分 | 逆解 + DSC 前馈 |
-| `Mac_PID.py` | 麦轮 | 世界系+车体系 | 轨迹切线 | 外环位置 PID + 内环速度 PID | \(J_{pinv}\) 力矩 |
-| `Mac_DSC.py` | 麦轮 | 车体系 | 轨迹切线 | 纯 DSC | \(J_{pinv}\) 力矩 |
-| `Macdscpid.py` | 麦轮 | 车体系 | 轨迹切线 | DSC + 积分/微分 | \(J_{pinv}\) 力矩 |
-| MATLAB | 质点车 | 世界系 | 世界系制导 | 外环 PID + 内环姿态 PID | 直接 \((F_p,T_p)\) |
-
-### 5.3 航向生成方式对照
-
-| 方式 | 表达式 | 使用文件 |
-|---|---|---|
-| 世界系制导 | \(\phi_d=\mathrm{atan2}(u_{Gy},u_{Gx})\) | `husky_volPID.py` / `husky_EW_PID.py` / MATLAB |
-| 车体系制导 | \(\tilde\phi=\mathrm{atan2}(u_{by},u_{bx})\) | `husky_EB_PID.py` |
-| 滤波面构造 | \(\tilde\phi=\mathrm{atan2}(\alpha_{f,y},\alpha_{f,x})\) | `husky_EB_DSC.py` |
-| 轨迹切线 | \(\phi_d=\omega_{traj}t+\pi/2\) | `Mac_PID.py` / `Mac_DSC.py` / `Macdscpid.py` |
-
-### 5.4 差速 vs 麦轮核心差别
-
-| 项目 | 差速轮（Husky） | 麦轮（Summit XL） |
-|---|---|---|
-| 速度向量维数 | 2（前向 + 偏航） | 3（前向 + 横向 + 偏航） |
-| 惯量矩阵 | 仅使用 \(M_{11},M_{33}\) | 完整 \(3\times 3\) |
-| 力矩分配 | 共模/差模 | \(J_{pinv}\in\mathbb R^{4\times 3}\) |
-| 横向误差消除 | 只能通过航向旋转间接消除 | 可通过 \(F_y\) 独立消除 |
-| 底层核心难点 | 滑移转向摩擦死区大 | 四轮力矩耦合 |
-
-所有 Python 脚本均可独立运行，可结合 5.2 节对照表按需选择。
